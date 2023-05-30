@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Loading from "./ui/Loading";
+import { capitaliseWord } from "../utils/utils";
 
 const Articles = ({ currentArticles, isLoading }) => {
   return (
@@ -11,6 +12,9 @@ const Articles = ({ currentArticles, isLoading }) => {
             <div className="col" key={article.article_id}>
               <div className="card shadow-sm article-card">
                 <div className="article-card-votes">{article.votes}</div>
+                <div className="article-card-topic">
+                  {capitaliseWord(article.topic)}
+                </div>
                 <img
                   src={article.article_img_url}
                   alt={`A cover representing the article with title: ${article.title}`}
@@ -24,6 +28,10 @@ const Articles = ({ currentArticles, isLoading }) => {
                   >
                     <p className="card-text">{article.title}</p>
                   </Link>
+                  <p>
+                    Written by: {article.author} on
+                    <br /> {new Date(article.created_at).toLocaleString()}
+                  </p>
                 </div>
               </div>
             </div>

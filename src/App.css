@@ -33,3 +33,15 @@ header .logo {
 .article-card-votes::before {
   content: "👍";
 }
+
+.article-card-topic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 6px;
+  font-weight: bold;
+  color: white;
+  border-radius: 0 10px 0 0px;
+  cursor: default;
+}
