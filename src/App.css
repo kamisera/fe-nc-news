@@ -45,3 +45,8 @@ header .logo {
   border-radius: 0 10px 0 0px;
   cursor: default;
 }
+
+.date-label,
+.author-label {
+  font-weight: bold;
+}
