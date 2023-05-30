@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
+import { useEffect, useState } from "react";
+import { fetchArticles } from "./utils/api";
+import Header from "./components/Header";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Articles from "./components/Articles";
+import Home from "./components/Home";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentArticles, setCurrentArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchArticles().then((articles) => {
+      setCurrentArticles(articles);
+      setIsLoading(false);
+    });
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <main className="container text-center">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/articles"
+            element={
+              <Articles
+                currentArticles={currentArticles}
+                isLoading={isLoading}
+              />
+            }
+          />
+        </Routes>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
