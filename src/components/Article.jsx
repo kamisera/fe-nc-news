@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
+import { capitaliseWord } from "../utils/utils";
 const Article = ({ currentArticle }) => {
   const navigate = useNavigate();
   // <button onClick={() => navigate(-1)}>go back</button>
@@ -16,7 +17,15 @@ const Article = ({ currentArticle }) => {
         </nav>
         <section className="col-8">
           <h2>{currentArticle.title}</h2>
-          <p className="article-info">
+          <span class="topic-bubble">
+            <Link
+              to={`articles?topic=${currentArticle.topic}`}
+              title={`Click here to view all articles for ${currentArticle.topic}`}
+            >
+              {capitaliseWord(currentArticle.topic)}
+            </Link>
+          </span>
+          <p className="article-info author-subheading">
             By{" "}
             <Link
               to={`users/${currentArticle.author}`}
