@@ -1,6 +1,8 @@
 const Home = () => {
   return (
     <>
+      <h1>Welcome to NewsHub</h1>
+      <h2 className="mb-5">Your trusted source for all things new.</h2>
       <p>
         Welcome to NewsHub - your source for news covering a broad range of
         topics from technology to politics.

@@ -11,7 +11,7 @@ const Articles = ({ currentArticles, isLoading }) => {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           {currentArticles.map((article) => {
             return (
-              <div className="col" key={article.article_id}>
+              <article className="col" key={article.article_id}>
                 <div className="card shadow-sm article-card">
                   <div className="article-card-votes">{article.votes}</div>
                   <div className="article-card-topic">
@@ -36,7 +36,7 @@ const Articles = ({ currentArticles, isLoading }) => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
