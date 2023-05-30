@@ -2,6 +2,10 @@ header {
   background: slategray;
 }
 
+a {
+  text-decoration: none;
+}
+
 header .logo {
   max-width: 200px;
 }
@@ -44,4 +48,63 @@ header .logo {
   color: white;
   border-radius: 0 10px 0 0px;
   cursor: default;
+}
+
+.date-label,
+.author-label,
+.votes-label,
+.comments-label {
+  font-weight: bold;
+}
+
+.full-article-container {
+  text-align: left;
+}
+
+.full-article-container h2 {
+  margin-top: 0.5em;
+}
+
+.article-info.author-subheading {
+  margin-bottom: 1.5em;
+  margin-top: 0.5em;
+}
+
+.article-info {
+  margin: 0;
+}
+
+.article-body {
+  margin-top: 2em;
+}
+
+.cover-label {
+  font-style: italic;
+}
+
+.go-back-link {
+  font-style: italic;
+}
+
+.article-image-container {
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.article-image-container img {
+  margin-bottom: 50px;
+}
+
+.topic-bubble {
+  background: slategray;
+  padding: 5px 10px;
+  border-radius: 50px;
+}
+
+.topic-bubble a {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
 }

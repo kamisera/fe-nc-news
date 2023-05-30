@@ -8,16 +8,22 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Articles from "./components/Articles";
 import Home from "./components/Home";
+import ArticleContainer from "./components/ArticleContainer";
+import { toast } from "react-toastify";
 
 function App() {
   const [currentArticles, setCurrentArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchArticles().then((articles) => {
-      setCurrentArticles(articles);
-      setIsLoading(false);
-    });
+    fetchArticles()
+      .then((articles) => {
+        setCurrentArticles(articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Could not load articles! Please try again later.");
+      });
   }, []);
 
   return (
@@ -35,6 +41,7 @@ function App() {
               />
             }
           />
+          <Route path="/articles/:article_id" element={<ArticleContainer />} />
         </Routes>
       </main>
     </>
