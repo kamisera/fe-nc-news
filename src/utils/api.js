@@ -10,13 +10,13 @@ const api = axios.create({
 });
 
 export const fetchArticles = () => {
-  return api
-    .get("articles")
-    .then(({ data }) => {
-      return data.articles;
-    })
-    .catch((err) => {
-      console.log("Something went wrong fetching articles!");
-      console.log(err);
-    });
+  return api.get("articles").then(({ data }) => {
+    return data.articles;
+  });
+};
+
+export const fetchArticle = (articleId) => {
+  return api.get(`articles/${articleId}`).then(({ data }) => {
+    return data.article;
+  });
 };
