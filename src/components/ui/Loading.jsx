@@ -3,7 +3,7 @@ import "../../styles/loading.css";
 const Loading = ({ name }) => {
   return (
     <>
-      <div class="lds-ellipsis">
+      <div className="lds-ellipsis">
         <div></div>
         <div></div>
         <div></div>
