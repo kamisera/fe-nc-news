@@ -1,8 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { capitaliseWord } from "../utils/utils";
 const Article = ({ currentArticle }) => {
-  const navigate = useNavigate();
-  // <button onClick={() => navigate(-1)}>go back</button>
   return (
     <>
       <article className="row full-article-container">
@@ -17,7 +15,7 @@ const Article = ({ currentArticle }) => {
         </nav>
         <section className="col-8">
           <h2>{currentArticle.title}</h2>
-          <span class="topic-bubble">
+          <span className="topic-bubble">
             <Link
               to={`articles?topic=${currentArticle.topic}`}
               title={`Click here to view all articles for ${currentArticle.topic}`}

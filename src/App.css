@@ -108,3 +108,23 @@ header .logo {
   font-weight: bold;
   color: white;
 }
+
+.article-comments h3 {
+  margin: 2em 0;
+}
+
+.comment-card {
+  text-align: left;
+  border-bottom: 1px solid slategray;
+  margin-bottom: 1em;
+}
+
+button.comment-vote-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.comment-attribution {
+  font-size: 0.8em;
+}
