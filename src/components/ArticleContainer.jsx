@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { fetchArticle, fetchArticleComments } from "../utils/api";
 import Loading from "./ui/Loading";
 import Article from "./Article";
 import ArticleComments from "./ArticleComments";
+import PostComment from "./ui/PostComment";
+import { UserContext } from "../contexts/User";
 
 const ArticleContainer = () => {
   const { article_id: articleId } = useParams();
@@ -12,6 +14,7 @@ const ArticleContainer = () => {
   const [currentArticle, setCurrentArticle] = useState({});
   const [currentArticleComments, setCurrentArticleComments] = useState([]);
   const [isLoadingComments, setIsLoadingComments] = useState(true);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   useEffect(() => {
     fetchArticle(articleId)
@@ -40,11 +43,19 @@ const ArticleContainer = () => {
       {isLoading && <Loading name={`Article #${articleId}`} />}
       {!isLoading && (
         <>
-          <Article currentArticle={currentArticle} />
+          <Article
+            currentArticle={currentArticle}
+            currentArticleComments={currentArticleComments}
+          />
           <ArticleComments
             currentArticleComments={currentArticleComments}
             setCurrentArticleComments={setCurrentArticleComments}
             isLoadingComments={isLoadingComments}
+          />
+          <PostComment
+            username={currentUser.username}
+            articleId={currentArticle.article_id}
+            setCurrentArticleComments={setCurrentArticleComments}
           />
         </>
       )}

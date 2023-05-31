@@ -27,3 +27,14 @@ export const fetchUsers = () => {
     return data.users;
   });
 };
+
+export const postComment = (username, articleId, body) => {
+  return api
+    .post(`articles/${articleId}/comments`, {
+      username,
+      body,
+    })
+    .then(({ data }) => {
+      return data.comment;
+    });
+};

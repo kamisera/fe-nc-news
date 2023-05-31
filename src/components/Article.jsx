@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { capitaliseWord } from "../utils/utils";
-const Article = ({ currentArticle }) => {
+const Article = ({ currentArticle, currentArticleComments }) => {
   return (
     <>
       <article className="row full-article-container">
@@ -43,8 +43,8 @@ const Article = ({ currentArticle }) => {
             {" "}
             <span className="comments-label">Comments: </span>
             <Link to="#comments">
-              {currentArticle.comment_count}
-              {currentArticle.comment_count === 1 ? " comment" : " comments"}
+              {currentArticleComments.length}
+              {currentArticleComments.length === 1 ? " comment" : " comments"}
             </Link>
           </p>
           <p className="article-body">{currentArticle.body}</p>

@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 import Loading from "./ui/Loading";
 
-const ArticleComments = ({
-  currentArticleComments,
-  setArticleComments,
-  isLoadingComments,
-}) => {
+const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
   return (
     <div className="container article-comments">
       <h3>Comments</h3>
