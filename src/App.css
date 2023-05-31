@@ -125,6 +125,21 @@ button.comment-vote-button {
   font-size: 1.5rem;
 }
 
-.comment-attribution {
+.comment-attribution,
+.vote-confirmation {
   font-size: 0.8em;
+}
+
+.upvote,
+.downvote {
+  filter: grayscale();
+}
+
+.upvote:hover,
+.upvote.casted {
+  filter: hue-rotate(310deg);
+}
+.downvote:hover,
+.downvote.casted {
+  filter: hue-rotate(515deg);
 }

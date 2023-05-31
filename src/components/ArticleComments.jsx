@@ -32,7 +32,7 @@ const ArticleComments = ({
                       on {new Date(comment.created_at).toLocaleString()}
                     </p>
                   </div>
-                  <div className="col-xs-12">
+                  <div className="article-vote-buttons col-xs-12">
                     <button
                       className="comment-vote-button"
                       title="Click to upvote comment"

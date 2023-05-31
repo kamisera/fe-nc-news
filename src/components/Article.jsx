@@ -1,6 +1,25 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { capitaliseWord } from "../utils/utils";
+import { voteOnArticle } from "../utils/api";
+import { toast } from "react-toastify";
 const Article = ({ currentArticle }) => {
+  const [currentVotes, setCurrentVotes] = useState(currentArticle.votes);
+  const [votedAmount, setVotedAmount] = useState(0);
+  const handleVoteChange = (articleId, amount) => {
+    if (votedAmount === amount) {
+      setVotedAmount(0);
+      setCurrentVotes((previousVotes) => previousVotes - amount);
+    } else {
+      setVotedAmount(amount);
+      setCurrentVotes((previousVotes) => previousVotes + amount);
+    }
+    voteOnArticle(articleId, amount).catch((error) => {
+      toast.error(`Could not vote on article. Please try again later.`);
+      setVotedAmount(0);
+      setCurrentVotes((previousVotes) => previousVotes - amount);
+    });
+  };
   return (
     <>
       <article className="row full-article-container">
@@ -37,9 +56,6 @@ const Article = ({ currentArticle }) => {
             {new Date(currentArticle.created_at).toLocaleString()}
           </p>
           <p className="article-info">
-            <span className="votes-label">Votes:</span> {currentArticle.votes}
-          </p>
-          <p className="article-info">
             {" "}
             <span className="comments-label">Comments: </span>
             <Link to="#comments">
@@ -47,6 +63,42 @@ const Article = ({ currentArticle }) => {
               {currentArticle.comment_count === 1 ? " comment" : " comments"}
             </Link>
           </p>
+          <p className="article-info">
+            <span className="votes-label">Votes:</span> {currentVotes}
+          </p>
+          <div className="article-vote-buttons">
+            <button
+              className={`comment-vote-button upvote ${
+                votedAmount === 1 && "casted"
+              }`}
+              title={
+                votedAmount === -1
+                  ? `Click to upvote comment`
+                  : `You upvoted this article.`
+              }
+              onClick={() => handleVoteChange(currentArticle.article_id, 1)}
+            >
+              ⬆️
+            </button>
+            <button
+              className={`comment-vote-button downvote ${
+                votedAmount === -1 && "casted"
+              }`}
+              title={
+                votedAmount === 1
+                  ? `Click to downvote comment`
+                  : `You upvoted this article.`
+              }
+              onClick={(event) =>
+                handleVoteChange(event, currentArticle.article_id, -1)
+              }
+            >
+              ⬇️
+            </button>
+            {!!Math.abs(votedAmount) && (
+              <p className="vote-confirmation">Thanks for voting!</p>
+            )}
+          </div>
           <p className="article-body">{currentArticle.body}</p>
         </section>
         <section className="col">
