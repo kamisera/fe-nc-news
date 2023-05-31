@@ -33,7 +33,7 @@ const ArticleContainer = () => {
       .catch((err) => {
         toast.error("Could not load article comments! Please try again later.");
       });
-  });
+  }, []);
 
   return (
     <>
