@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import Loading from "./ui/Loading";
 
 const ArticleComments = ({
-  // currentArticleComments,
+  currentArticleComments,
   setArticleComments,
   isLoadingComments,
 }) => {
