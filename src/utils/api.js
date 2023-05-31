@@ -23,6 +23,7 @@ export const fetchArticleComments = (articleId) => {
 };
 
 export const voteOnArticle = (articleId, amount) => {
+  console.log(articleId);
   const data = { inc_votes: amount };
   return api.patch(`articles/${articleId}`, data).then(({ data }) => {
     return data.article;

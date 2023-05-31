@@ -32,7 +32,7 @@ const Article = ({ currentArticle }) => {
             Go back
           </Link>
         </nav>
-        <section className="col-8">
+        <section className="col-xs-12 col-s-12 col-md-12 col-lg-8">
           <h2>{currentArticle.title}</h2>
           <span className="topic-bubble">
             <Link
@@ -89,9 +89,7 @@ const Article = ({ currentArticle }) => {
                   ? `Click to downvote comment`
                   : `You upvoted this article.`
               }
-              onClick={(event) =>
-                handleVoteChange(event, currentArticle.article_id, -1)
-              }
+              onClick={() => handleVoteChange(currentArticle.article_id, -1)}
             >
               ⬇️
             </button>
