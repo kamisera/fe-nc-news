@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
-    <nav>
-      <ul className="nav nav-pills">
+    <nav className="main-navigation ">
+      <ul className="nav nav-pills justify-content-end">
         <li className="nav-item">
           <NavLink to="/" className="nav-link" title="Go home">
             Home
@@ -24,8 +24,8 @@ const Navigation = () => {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/users" className="nav-link" title="View all users">
-            Users
+          <NavLink to="/authors" className="nav-link" title="View all authors">
+            Authors
           </NavLink>
         </li>
       </ul>
