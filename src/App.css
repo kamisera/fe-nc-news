@@ -1,5 +1,6 @@
 header {
   background: slategray;
+  padding: 0 20px;
 }
 
 a {
@@ -127,4 +128,39 @@ button.comment-vote-button {
 
 .comment-attribution {
   font-size: 0.8em;
+}
+
+.author-avatar {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+.authors-container h2 {
+  margin-bottom: 2em;
+}
+
+.current-user img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: white;
+  border-radius: 100px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 2px;
+}
+
+.current-user {
+  text-align: right;
+}
+
+.main-header {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logged-in-username {
+  margin-right: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: default;
 }
