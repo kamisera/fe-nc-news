@@ -3,13 +3,16 @@ import { Fragment } from "react";
 import Loading from "./ui/Loading";
 
 const ArticleComments = ({
-  currentArticleComments,
+  // currentArticleComments,
   setArticleComments,
   isLoadingComments,
 }) => {
   return (
     <div className="row article-comments">
       <h3>Comments</h3>
+      {!currentArticleComments.length && (
+        <p>No comments for this article yet.</p>
+      )}
       {isLoadingComments && <Loading name="Comments for this article..." />}
       {!isLoadingComments &&
         currentArticleComments.map((comment) => {
