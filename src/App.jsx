@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import ArticleContainer from "./components/ArticleContainer";
 import { toast } from "react-toastify";
 import Authors from "./components/Authors";
+import Footer from "./components/Footer";
 
 function App() {
   const [currentArticles, setCurrentArticles] = useState([]);
@@ -46,6 +47,7 @@ function App() {
           <Route path="/authors" element={<Authors />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }
