@@ -34,10 +34,6 @@ header .logo {
   border-radius: 0 0 0 10px;
 }
 
-.article-card-votes::before {
-  content: "👍";
-}
-
 .article-card-topic {
   position: absolute;
   top: 0;

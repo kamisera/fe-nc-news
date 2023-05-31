@@ -13,7 +13,10 @@ const Articles = ({ currentArticles, isLoading }) => {
             return (
               <article className="col" key={article.article_id}>
                 <div className="card shadow-sm article-card">
-                  <div className="article-card-votes">{article.votes}</div>
+                  <div className="article-card-votes">
+                    {article.votes < 0 ? "👎" : "👍"}
+                    {article.votes}
+                  </div>
                   <div className="article-card-topic">
                     {capitaliseWord(article.topic)}
                   </div>
