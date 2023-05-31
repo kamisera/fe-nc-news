@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Fragment } from "react";
 import Loading from "./ui/Loading";
 
 const ArticleComments = ({
@@ -8,41 +7,51 @@ const ArticleComments = ({
   isLoadingComments,
 }) => {
   return (
-    <div className="row article-comments">
+    <div className="container article-comments">
       <h3>Comments</h3>
       {!currentArticleComments.length && (
         <p>No comments for this article yet.</p>
       )}
       {isLoadingComments && <Loading name="Comments for this article..." />}
-      {!isLoadingComments &&
-        currentArticleComments.map((comment) => {
-          return (
-            <Fragment key={comment.comment_id}>
-              <div className="col-5 comment-card">
-                <p>{comment.body}</p>
-                <p className="comment-attribution">
-                  By{" "}
-                  <Link to={`/users/${comment.author}`}>{comment.author}</Link>{" "}
-                  on {new Date(comment.created_at).toLocaleString()}
-                </p>
+      {!isLoadingComments && (
+        <div className="row">
+          {currentArticleComments.map((comment) => {
+            return (
+              <div
+                className="col-xs-12 col-sm-12 col-lg-6"
+                key={comment.comment_id}
+              >
+                <div className="comment-card">
+                  <div className="col-xs-12">
+                    <p>{comment.body}</p>
+                    <p className="comment-attribution">
+                      By{" "}
+                      <Link to={`/users/${comment.author}`}>
+                        {comment.author}
+                      </Link>{" "}
+                      on {new Date(comment.created_at).toLocaleString()}
+                    </p>
+                  </div>
+                  <div className="col-xs-12">
+                    <button
+                      className="comment-vote-button"
+                      title="Click to upvote comment"
+                    >
+                      👍
+                    </button>
+                    <button
+                      className="comment-vote-button"
+                      title="Click to downvote comment"
+                    >
+                      👎
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="col-1">
-                <button
-                  className="comment-vote-button"
-                  title="Click to upvote comment"
-                >
-                  👍
-                </button>
-                <button
-                  className="comment-vote-button"
-                  title="Click to downvote comment"
-                >
-                  👎
-                </button>
-              </div>
-            </Fragment>
-          );
-        })}
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
