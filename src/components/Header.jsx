@@ -20,8 +20,7 @@ const Header = () => {
       <div className="main-navigation-container col-sm-6 col-md-5 col-lg-7">
         <Navigation />
       </div>
-      <div className="current-user col-sm-12 col-md-2 col-lg-2">
-        <span className="logged-in-username">@{currentUser.username}</span>
+      <div className="current-user col-sm-12 col-md-2 col-lg-1">
         <span className="logged-in-username-subheader">
           Logged in as @{currentUser.username}
         </span>
@@ -30,6 +29,7 @@ const Header = () => {
           alt={`Avatar image for user ${currentUser.name}`}
           title={`Currently logged in as ${currentUser.name}`}
         />
+        <span className="logged-in-username">@{currentUser.username}</span>
       </div>
     </header>
   );
