@@ -38,3 +38,9 @@ export const postComment = (username, articleId, body) => {
       return data.comment;
     });
 };
+export const voteOnArticle = (articleId, amount) => {
+  const data = { inc_votes: amount };
+  return api.patch(`articles/${articleId}`, data).then(({ data }) => {
+    return data.article;
+  });
+};

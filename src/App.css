@@ -33,10 +33,7 @@ header .logo {
   font-weight: bold;
   color: white;
   border-radius: 0 0 0 10px;
-}
-
-.article-card-votes::before {
-  content: "👍";
+  cursor: default;
 }
 
 .article-card-topic {
@@ -116,8 +113,10 @@ header .logo {
 
 .comment-card {
   text-align: left;
+}
+
+.comment-card-container {
   border-bottom: 1px solid slategray;
-  margin-bottom: 1em;
 }
 
 button.comment-vote-button {
@@ -126,7 +125,8 @@ button.comment-vote-button {
   font-size: 1.5rem;
 }
 
-.comment-attribution {
+.comment-attribution,
+.vote-confirmation {
   font-size: 0.8em;
 }
 
@@ -199,4 +199,33 @@ footer {
   .logged-in-username {
     display: none;
   }
+.upvote,
+.downvote {
+  filter: grayscale();
+}
+
+.upvote:hover,
+.upvote.casted {
+  filter: hue-rotate(310deg);
+}
+.downvote:hover,
+.downvote.casted {
+  filter: hue-rotate(515deg);
+}
+
+.comment-vote-icon {
+  filter: grayscale();
+}
+
+.upvoted {
+  filter: hue-rotate(310deg);
+}
+
+.downvoted {
+  filter: hue-rotate(515deg);
+}
+
+.article-cover {
+  object-fit: cover;
+  max-height: 200px;
 }
