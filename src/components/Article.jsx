@@ -13,7 +13,7 @@ const Article = ({ currentArticle, currentArticleComments }) => {
             Go back
           </Link>
         </nav>
-        <section className="col-8">
+        <section className="col-s-12 col-md-8">
           <h2>{currentArticle.title}</h2>
           <span className="topic-bubble">
             <Link
