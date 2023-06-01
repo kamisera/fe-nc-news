@@ -32,7 +32,7 @@ const PostComment = ({ username, articleId, setCurrentArticleComments }) => {
   };
 
   return (
-    <div className="row content-justify-end mb-4 mt-4">
+    <div className="row content-justify-end mb-4 pb-4 mt-4 border-bottom">
       <div className="col">
         <form className="form-group" onSubmit={handleSubmit}>
           <label className="for-label" htmlFor="comment-body">
