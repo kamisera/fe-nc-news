@@ -142,3 +142,20 @@ button.comment-vote-button {
 .downvote.casted {
   filter: hue-rotate(515deg);
 }
+
+.comment-vote-icon {
+  filter: grayscale();
+}
+
+.upvoted {
+  filter: hue-rotate(310deg);
+}
+
+.downvoted {
+  filter: hue-rotate(515deg);
+}
+
+.article-cover {
+  object-fit: cover;
+  max-height: 200px;
+}

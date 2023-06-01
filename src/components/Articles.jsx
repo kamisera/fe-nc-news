@@ -23,12 +23,21 @@ const Articles = ({ currentArticles, isLoading }) => {
                         : "dislike"
                     } this article.`}
                   >
-                    {article.votes >= 0
-                      ? article.votes > 0
-                        ? "🙂 "
-                        : "🤔 "
-                      : "☹️ "}
-                    {article.votes}
+                    {article.votes > 0 && (
+                      <span className="comment-vote-icon upvoted">
+                        🔼 {article.votes}
+                      </span>
+                    )}
+                    {article.votes < 0 && (
+                      <span className="comment-vote-icon downvoted">
+                        🔽 {article.votes}
+                      </span>
+                    )}
+                    {article.votes === 0 && (
+                      <span className="comment-vote-icon">
+                        ▶️ {article.votes}
+                      </span>
+                    )}
                   </div>
                   <div className="article-card-topic">
                     {capitaliseWord(article.topic)}
@@ -37,6 +46,7 @@ const Articles = ({ currentArticles, isLoading }) => {
                     src={article.article_img_url}
                     alt={`A cover representing the article with title: ${article.title}`}
                     title={article.title}
+                    className="article-cover"
                   />
 
                   <div className="card-body">
