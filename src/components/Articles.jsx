@@ -1,13 +1,36 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { fetchArticles } from "../utils/api";
+import { Link, useSearchParams } from "react-router-dom";
 import Loading from "./ui/Loading";
 import { capitaliseWord } from "../utils/utils";
+import { toast } from "react-toastify";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
-const Articles = ({ currentArticles, isLoading }) => {
+const Articles = () => {
+  const [currentArticles, setCurrentArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentTopic = searchParams.get("topic");
+
+  useEffect(() => {
+    fetchArticles(searchParams)
+      .then((articles) => {
+        setCurrentArticles(articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Could not load articles! Please try again later.");
+      });
+  }, [currentTopic]);
   return (
     <section className="container">
+      <h2 className="mb-4 pb-4">
+        {!currentTopic && "Showing all articles"}
+        {currentTopic &&
+          `Showing articles for "${capitaliseWord(currentTopic)}"`}
+      </h2>
       {!currentArticles && <>No articles</>}
       {isLoading && <Loading name="articles" />}
       {!isLoading && currentArticles.length && (

@@ -159,3 +159,12 @@ button.comment-vote-button {
   object-fit: cover;
   max-height: 200px;
 }
+
+.topic-card {
+  background: slategray;
+}
+
+.topic-card a {
+  color: white;
+  font-size: 1.2rem;
+}
