@@ -22,7 +22,7 @@ const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
                     <p>{comment.body}</p>
                     <p className="comment-attribution">
                       By{" "}
-                      <Link to={`/users/${comment.author}`}>
+                      <Link to={`/articles?author=${comment.author}`}>
                         {comment.author}
                       </Link>{" "}
                       on {new Date(comment.created_at).toLocaleString()}
@@ -30,16 +30,16 @@ const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
                   </div>
                   <div className="article-vote-buttons col">
                     <button
-                      className="comment-vote-button"
+                      className="comment-vote-button upvote"
                       title="Click to upvote comment"
                     >
-                      👍
+                      ⬆️
                     </button>
                     <button
-                      className="comment-vote-button"
+                      className="comment-vote-button downvote"
                       title="Click to downvote comment"
                     >
-                      👎
+                      ⬇️
                     </button>
                   </div>
                 </div>

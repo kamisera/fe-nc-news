@@ -199,6 +199,7 @@ footer {
   .logged-in-username {
     display: none;
   }
+}
 .upvote,
 .downvote {
   filter: grayscale();
