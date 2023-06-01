@@ -6,9 +6,17 @@ const api = axios.create({
 
 export const fetchArticles = (searchParams) => {
   let url = "articles";
-  const topic = searchParams.get("topic");
-  if (topic) {
-    url += `?topic=${topic}`;
+  const greenList = ["topic", "sort_by", "order"];
+  const queries = [];
+  if (searchParams) {
+    for (const [key, value] of searchParams) {
+      if (greenList.includes(key)) {
+        queries.push(`${key}=${value}`);
+      }
+    }
+  }
+  if (queries.length) {
+    url += "?" + queries.join("&");
   }
   return api.get(url).then(({ data }) => {
     return data.articles;
@@ -43,6 +51,7 @@ export const postComment = (username, articleId, body) => {
       return data.comment;
     });
 };
+
 export const voteOnArticle = (articleId, amount) => {
   const data = { inc_votes: amount };
   return api.patch(`articles/${articleId}`, data).then(({ data }) => {
@@ -51,7 +60,7 @@ export const voteOnArticle = (articleId, amount) => {
 };
 
 export const fetchTopics = () => {
-  return api.get("topics").then(({ data }) => {
+  return api.get(`topics`).then(({ data }) => {
     return data.topics;
   });
 };
