@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import Loading from "./ui/Loading";
 import { capitaliseWord } from "../utils/utils";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const Articles = ({ currentArticles, isLoading }) => {
   return (
@@ -57,8 +60,8 @@ const Articles = ({ currentArticles, isLoading }) => {
                       <p className="card-text">{article.title}</p>
                     </Link>
                     <p>
-                      Written by: {article.author} on
-                      <br /> {new Date(article.created_at).toLocaleString()}
+                      By {article.author} on
+                      <br /> {dayjs(article.created_at).fromNow()}
                     </p>
                   </div>
                 </div>
