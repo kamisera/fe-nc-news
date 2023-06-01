@@ -37,7 +37,7 @@ const ArticleContainer = () => {
 
   return (
     <>
-      {isLoading && <Loading name={`Article #${articleId}`} />}
+      {isLoading && <Loading name={`Article...`} />}
       {!isLoading && (
         <>
           <Article currentArticle={currentArticle} />
