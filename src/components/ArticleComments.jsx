@@ -6,8 +6,7 @@ dayjs.extend(relativeTime);
 
 const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
   return (
-    <div className="container article-comments" id="comments">
-      <h3>Comments</h3>
+    <div className="container article-comments">
       {!currentArticleComments.length && (
         <p>No comments for this article yet.</p>
       )}

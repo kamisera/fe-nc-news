@@ -47,15 +47,18 @@ const ArticleContainer = () => {
             currentArticle={currentArticle}
             currentArticleComments={currentArticleComments}
           />
-          <ArticleComments
-            currentArticleComments={currentArticleComments}
-            setCurrentArticleComments={setCurrentArticleComments}
-            isLoadingComments={isLoadingComments}
-          />
+          <h3 className="m-4 p-4" id="comments">
+            Comments
+          </h3>
           <PostComment
             username={currentUser.username}
             articleId={currentArticle.article_id}
             setCurrentArticleComments={setCurrentArticleComments}
+          />
+          <ArticleComments
+            currentArticleComments={currentArticleComments}
+            setCurrentArticleComments={setCurrentArticleComments}
+            isLoadingComments={isLoadingComments}
           />
         </>
       )}

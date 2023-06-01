@@ -232,6 +232,13 @@ footer {
   max-height: 200px;
 }
 
+.topic-card {
+  background: slategray;
+}
+
+.topic-card a {
+  color: white;
+  font-size: 1.2rem;
 .comment-card .comment-vote-button {
   font-size: 1.3rem;
 }
