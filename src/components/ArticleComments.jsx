@@ -21,8 +21,8 @@ const ArticleComments = ({
                 className="col-xs-12 col-sm-12 col-lg-6"
                 key={comment.comment_id}
               >
-                <div className="comment-card">
-                  <div className="col-xs-12">
+                <div className="comment-card row">
+                  <div className="col-xs-12 col-sm-10">
                     <p>{comment.body}</p>
                     <p className="comment-attribution">
                       By{" "}
@@ -32,7 +32,7 @@ const ArticleComments = ({
                       on {new Date(comment.created_at).toLocaleString()}
                     </p>
                   </div>
-                  <div className="article-vote-buttons col-xs-12">
+                  <div className="article-vote-buttons col">
                     <button
                       className="comment-vote-button"
                       title="Click to upvote comment"
