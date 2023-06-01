@@ -13,8 +13,21 @@ const Articles = ({ currentArticles, isLoading }) => {
             return (
               <article className="col" key={article.article_id}>
                 <div className="card shadow-sm article-card">
-                  <div className="article-card-votes">
-                    {article.votes < 0 ? "👎" : "👍"}
+                  <div
+                    className="article-card-votes"
+                    title={`People ${
+                      article.votes >= 0
+                        ? article.votes > 0
+                          ? "like"
+                          : "have no opinions about"
+                        : "dislike"
+                    } this article.`}
+                  >
+                    {article.votes >= 0
+                      ? article.votes > 0
+                        ? "🙂 "
+                        : "🤔 "
+                      : "☹️ "}
                     {article.votes}
                   </div>
                   <div className="article-card-topic">
