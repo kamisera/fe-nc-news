@@ -61,7 +61,7 @@ const Articles = ({ currentArticles, isLoading }) => {
                     </Link>
                     <p>
                       By {article.author} on
-                      <br /> {dayjs(article.created_at).fromNow()}
+                      <br /> {dayjs(Date.parse(article.created_at)).fromNow()}
                     </p>
                   </div>
                 </div>

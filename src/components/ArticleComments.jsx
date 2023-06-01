@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import Loading from "./ui/Loading";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
-const ArticleComments = ({
-  currentArticleComments,
-  setArticleComments,
-  isLoadingComments,
-}) => {
+const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
   return (
     <div className="container article-comments" id="comments">
       <h3>Comments</h3>
@@ -26,24 +25,24 @@ const ArticleComments = ({
                     <p>{comment.body}</p>
                     <p className="comment-attribution">
                       By{" "}
-                      <Link to={`/users/${comment.author}`}>
+                      <Link to={`/articles?author=${comment.author}`}>
                         {comment.author}
                       </Link>{" "}
-                      on {new Date(comment.created_at).toLocaleString()}
+                      {dayjs(Date.parse(comment.created_at)).fromNow()}
                     </p>
                   </div>
                   <div className="article-vote-buttons col">
                     <button
-                      className="comment-vote-button"
+                      className="comment-vote-button upvote"
                       title="Click to upvote comment"
                     >
-                      👍
+                      ⬆️
                     </button>
                     <button
-                      className="comment-vote-button"
+                      className="comment-vote-button downvote"
                       title="Click to downvote comment"
                     >
-                      👎
+                      ⬇️
                     </button>
                   </div>
                 </div>

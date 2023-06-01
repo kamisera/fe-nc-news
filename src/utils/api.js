@@ -22,6 +22,22 @@ export const fetchArticleComments = (articleId) => {
   });
 };
 
+export const fetchUsers = () => {
+  return api.get(`users`).then(({ data }) => {
+    return data.users;
+  });
+};
+
+export const postComment = (username, articleId, body) => {
+  return api
+    .post(`articles/${articleId}/comments`, {
+      username,
+      body,
+    })
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
 export const voteOnArticle = (articleId, amount) => {
   const data = { inc_votes: amount };
   return api.patch(`articles/${articleId}`, data).then(({ data }) => {

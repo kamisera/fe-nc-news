@@ -1,5 +1,6 @@
 header {
   background: slategray;
+  padding: 0 20px;
 }
 
 a {
@@ -129,6 +130,77 @@ button.comment-vote-button {
   font-size: 0.8em;
 }
 
+.author-avatar {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+.authors-container h2 {
+  margin-bottom: 2em;
+}
+
+.current-user img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: white;
+  border-radius: 100px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 2px;
+}
+
+.current-user {
+  text-align: center;
+}
+
+.main-header {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logged-in-username {
+  display: block;
+  margin-right: 10px;
+  color: white;
+  cursor: default;
+  font-size: 0.9rem;
+}
+
+footer {
+  border-top: 1px solid #bbb;
+}
+
+.logged-in-username-subheader {
+  width: 100%;
+  display: none;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .main-navigation-container {
+    width: 100%;
+  }
+  .nav-pills li {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .logged-in-username-subheader {
+    display: block;
+  }
+  .current-user img {
+    display: none;
+  }
+  .logged-in-username {
+    display: none;
+  }
+}
 .upvote,
 .downvote {
   filter: grayscale();
@@ -158,4 +230,8 @@ button.comment-vote-button {
 .article-cover {
   object-fit: cover;
   max-height: 200px;
+}
+
+.comment-card .comment-vote-button {
+  font-size: 1.3rem;
 }
