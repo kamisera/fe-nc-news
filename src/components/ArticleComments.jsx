@@ -7,7 +7,7 @@ const ArticleComments = ({
   isLoadingComments,
 }) => {
   return (
-    <div className="container article-comments">
+    <div className="container article-comments" id="comments">
       <h3>Comments</h3>
       {!currentArticleComments.length && (
         <p>No comments for this article yet.</p>

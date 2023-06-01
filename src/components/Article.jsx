@@ -95,10 +95,10 @@ const Article = ({ currentArticle }) => {
           <p className="article-info">
             {" "}
             <span className="comments-label">Comments: </span>
-            <Link to="#comments">
+            <a href="#comments">
               {currentArticle.comment_count}
               {currentArticle.comment_count === 1 ? " comment" : " comments"}
-            </Link>
+            </a>
           </p>
           <p className="article-info">
             <span className="votes-label">Votes:</span> {currentVotes}
