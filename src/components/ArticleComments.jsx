@@ -28,7 +28,7 @@ const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
                       <Link to={`/articles?author=${comment.author}`}>
                         {comment.author}
                       </Link>{" "}
-                      {dayjs(comment.created_at).fromNow()}
+                      {dayjs(Date.parse(comment.created_at)).fromNow()}
                     </p>
                   </div>
                   <div className="article-vote-buttons col">
