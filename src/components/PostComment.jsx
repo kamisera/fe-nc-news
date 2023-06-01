@@ -37,7 +37,9 @@ const PostComment = ({ username, articleId, setCurrentArticleComments }) => {
 
   useEffect(() => {
     if (currentHash !== "") {
-      window.location.href = window.location.href + "#" + currentHash;
+      if (!window.location.href.includes("#")) {
+        window.location.href = window.location.href + "#" + currentHash;
+      }
     }
   }, [currentHash]);
 
