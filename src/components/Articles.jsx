@@ -33,7 +33,9 @@ const Articles = () => {
         {currentTopic &&
           `Showing articles for "${capitaliseWord(currentTopic)}"`}
       </h2>
-      {currentTopic && <Link to="/articles">Show all topics</Link>}
+      {!isLoading && currentTopic && (
+        <Link to="/articles">Show all topics</Link>
+      )}
       {!currentArticles && <>No articles</>}
       {isLoading && <Loading name="articles" />}
       {!isLoading && currentArticles.length === 0 && <p>No articles found.</p>}
