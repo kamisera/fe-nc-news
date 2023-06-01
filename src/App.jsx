@@ -8,6 +8,9 @@ import Articles from "./components/Articles";
 import Home from "./components/Home";
 import ArticleContainer from "./components/ArticleContainer";
 import Topics from "./components/Topics";
+import { toast } from "react-toastify";
+import Authors from "./components/Authors";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,8 +22,10 @@ function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:article_id" element={<ArticleContainer />} />
           <Route path="/topics/" element={<Topics />} />
+          <Route path="/authors" element={<Authors />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }
