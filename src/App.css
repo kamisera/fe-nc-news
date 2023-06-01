@@ -230,3 +230,7 @@ footer {
   object-fit: cover;
   max-height: 200px;
 }
+
+.comment-card .comment-vote-button {
+  font-size: 1.3rem;
+}
