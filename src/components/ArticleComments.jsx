@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import Loading from "./ui/Loading";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
   return (
@@ -25,7 +28,7 @@ const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
                       <Link to={`/articles?author=${comment.author}`}>
                         {comment.author}
                       </Link>{" "}
-                      on {new Date(comment.created_at).toLocaleString()}
+                      {dayjs(comment.created_at).fromNow()}
                     </p>
                   </div>
                   <div className="article-vote-buttons col">
