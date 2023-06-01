@@ -1,25 +1,62 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { capitaliseWord } from "../utils/utils";
 import { voteOnArticle } from "../utils/api";
 import { toast } from "react-toastify";
 const Article = ({ currentArticle }) => {
   const [currentVotes, setCurrentVotes] = useState(currentArticle.votes);
   const [votedAmount, setVotedAmount] = useState(0);
-  const handleVoteChange = (articleId, amount) => {
-    if (votedAmount === amount) {
-      setVotedAmount(0);
-      setCurrentVotes((previousVotes) => previousVotes - amount);
-    } else {
-      setVotedAmount(amount);
-      setCurrentVotes((previousVotes) => previousVotes + amount);
-    }
-    voteOnArticle(articleId, amount).catch((error) => {
-      toast.error(`Could not vote on article. Please try again later.`);
-      setVotedAmount(0);
-      setCurrentVotes((previousVotes) => previousVotes - amount);
+  const [resetVote, setResetVote] = useState(false);
+
+  const handleVoteChange = (clickedAmount) => {
+    setVotedAmount((prevVotedAmount) => {
+      if (prevVotedAmount === 0) {
+        console.log("new vote - using clicked amount");
+        setCurrentVotes((previousVotes) => previousVotes + clickedAmount);
+      }
+
+      if (prevVotedAmount === clickedAmount) {
+        console.log("clicked is same as already voted - resetting vote");
+        setResetVote(true);
+      }
+
+      if (prevVotedAmount !== clickedAmount && prevVotedAmount !== 0) {
+        console.log(
+          "clicked is opposite of previous vote, doubling the amount"
+        );
+        setCurrentVotes((previousVotes) => previousVotes + clickedAmount * 2);
+        return clickedAmount * 2;
+      }
+
+      return clickedAmount;
     });
   };
+
+  useEffect(() => {
+    if (votedAmount !== 0) {
+      console.log("updating vote in api to: ", votedAmount);
+      voteOnArticle(currentArticle.article_id, votedAmount).catch((err) => {
+        toast.error(`Could not vote on article. Please try again later.`);
+        setVotedAmount(0);
+        setCurrentVotes((previousVotes) => previousVotes - votedAmount);
+      });
+    }
+  }, [votedAmount]);
+
+  useEffect(() => {
+    const cachedVotedAmount = votedAmount;
+    if (resetVote && votedAmount !== 0) {
+      setResetVote(false);
+      setCurrentVotes((previousVotes) => previousVotes + -votedAmount);
+      setVotedAmount(0);
+      voteOnArticle(currentArticle.article_id, -votedAmount).catch((err) => {
+        setCurrentVotes((previousVotes) => previousVotes + votedAmount);
+        setVotedAmount(cachedVotedAmount);
+        toast.error(`Could not undo your vote. Please try again later.`);
+      });
+    }
+  }, [resetVote]);
+
   return (
     <>
       <article className="row full-article-container">
@@ -76,20 +113,20 @@ const Article = ({ currentArticle }) => {
                   ? `Click to upvote comment`
                   : `You upvoted this article.`
               }
-              onClick={() => handleVoteChange(currentArticle.article_id, 1)}
+              onClick={() => handleVoteChange(1)}
             >
               ⬆️
             </button>
             <button
               className={`comment-vote-button downvote ${
-                votedAmount === -1 && "casted"
+                votedAmount < 0 && "casted"
               }`}
               title={
-                votedAmount === 1
+                votedAmount > 0
                   ? `Click to downvote comment`
                   : `You upvoted this article.`
               }
-              onClick={() => handleVoteChange(currentArticle.article_id, -1)}
+              onClick={() => handleVoteChange(-1)}
             >
               ⬇️
             </button>
