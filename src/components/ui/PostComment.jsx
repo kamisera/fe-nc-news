@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { postComment } from "../../utils/api";
 import { toast } from "react-toastify";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const PostComment = ({ username, articleId, setCurrentArticleComments }) => {
   const [body, setBody] = useState("");
   const [isSendingComment, setIsSendingComment] = useState(false);
   const [hasPostedComment, setHasPostedComment] = useState(false);
+  const [currentHash, setCurrentHash] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,6 +17,7 @@ const PostComment = ({ username, articleId, setCurrentArticleComments }) => {
     postComment(username, articleId, body)
       .then((postedComment) => {
         setCurrentArticleComments((previousComments) => {
+          setCurrentHash("comments");
           setBody("");
           setIsSendingComment(false);
           setHasPostedComment(true);
@@ -29,6 +34,12 @@ const PostComment = ({ username, articleId, setCurrentArticleComments }) => {
   const handleChange = (event) => {
     setBody(event.target.value);
   };
+
+  useEffect(() => {
+    if (currentHash !== "") {
+      window.location.href = window.location.href + "#" + currentHash;
+    }
+  }, [currentHash]);
 
   return (
     <div className="row content-justify-end mb-4 mt-4">
