@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { postComment } from "../../utils/api";
+import { postComment } from "../utils/api";
 import { toast } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
 

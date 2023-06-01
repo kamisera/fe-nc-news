@@ -5,7 +5,7 @@ import { fetchArticle, fetchArticleComments } from "../utils/api";
 import Loading from "./ui/Loading";
 import Article from "./Article";
 import ArticleComments from "./ArticleComments";
-import PostComment from "./ui/PostComment";
+import PostComment from "./PostComment";
 import { UserContext } from "../contexts/User";
 
 const ArticleContainer = () => {
