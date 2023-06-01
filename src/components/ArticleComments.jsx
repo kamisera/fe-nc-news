@@ -18,7 +18,7 @@ const ArticleComments = ({
           {currentArticleComments.map((comment) => {
             return (
               <div
-                className="col-xs-12 col-sm-12 col-lg-6"
+                className="col-xs-12 col-sm-12 col-lg-6 comment-card-container p-2"
                 key={comment.comment_id}
               >
                 <div className="comment-card row">

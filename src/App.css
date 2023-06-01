@@ -111,8 +111,10 @@ header .logo {
 
 .comment-card {
   text-align: left;
+}
+
+.comment-card-container {
   border-bottom: 1px solid slategray;
-  margin-bottom: 1em;
 }
 
 button.comment-vote-button {
