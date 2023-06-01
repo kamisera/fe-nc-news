@@ -73,7 +73,7 @@ const Article = ({ currentArticle }) => {
           <h2>{currentArticle.title}</h2>
           <span className="topic-bubble">
             <Link
-              to={`articles?topic=${currentArticle.topic}`}
+              to={`/articles?topic=${currentArticle.topic}`}
               title={`Click here to view all articles for ${currentArticle.topic}`}
             >
               {capitaliseWord(currentArticle.topic)}
@@ -82,7 +82,7 @@ const Article = ({ currentArticle }) => {
           <p className="article-info author-subheading">
             By{" "}
             <Link
-              to={`users/${currentArticle.author}`}
+              to={`/articles?author=${currentArticle.author}`}
               title="Click here to read about this this author."
             >
               {currentArticle.author}
