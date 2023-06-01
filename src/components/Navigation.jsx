@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
-    <nav className="main-navigation ">
+    <nav className="main-navigation">
       <ul className="nav nav-pills justify-content-end">
         <li className="nav-item">
           <NavLink to="/" className="nav-link" title="Go home">

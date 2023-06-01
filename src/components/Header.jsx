@@ -17,11 +17,14 @@ const Header = () => {
           <img src={logo} className="logo" alt="NewsHub logo showing a globe" />
         </Link>
       </div>
-      <div className="col-sm-6 col-md-5 col-lg-7">
+      <div className="main-navigation-container col-sm-6 col-md-5 col-lg-7">
         <Navigation />
       </div>
-      <div className="current-user col-sm-2 col-md-2 col-lg-2">
+      <div className="current-user col-sm-12 col-md-2 col-lg-2">
         <span className="logged-in-username">@{currentUser.username}</span>
+        <span className="logged-in-username-subheader">
+          Logged in as @{currentUser.username}
+        </span>
         <img
           src={currentUser.avatar_url}
           alt={`Avatar image for user ${currentUser.name}`}

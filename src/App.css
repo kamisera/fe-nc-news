@@ -168,3 +168,35 @@ button.comment-vote-button {
 footer {
   border-top: 1px solid #bbb;
 }
+
+.logged-in-username-subheader {
+  width: 100%;
+  display: none;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .main-navigation-container {
+    width: 100%;
+  }
+  .nav-pills li {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .logged-in-username-subheader {
+    display: block;
+  }
+  .current-user img {
+    display: none;
+  }
+  .logged-in-username {
+    display: none;
+  }
+}
