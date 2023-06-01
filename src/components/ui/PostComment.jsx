@@ -31,9 +31,9 @@ const PostComment = ({ username, articleId, setCurrentArticleComments }) => {
   };
 
   return (
-    <div className="row content-justify-end m-4">
-      <form className="form-group" onSubmit={handleSubmit}>
-        <div className="col">
+    <div className="row content-justify-end mb-4 mt-4">
+      <div className="col">
+        <form className="form-group" onSubmit={handleSubmit}>
           <label className="for-label" htmlFor="comment-body">
             Enter your comment here:{" "}
           </label>
@@ -55,8 +55,8 @@ const PostComment = ({ username, articleId, setCurrentArticleComments }) => {
             <p>Comment posted! Thanks for your contribution!</p>
           )}
           {isSendingComment && <p>Posting comment; please wait...</p>}
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
