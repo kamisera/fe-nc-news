@@ -106,7 +106,7 @@ const Article = ({ currentArticle }) => {
           <div className="article-vote-buttons">
             <button
               className={`comment-vote-button upvote ${
-                votedAmount === 1 && "casted"
+                votedAmount === 1 ? "casted" : ""
               }`}
               title={
                 votedAmount === -1
@@ -119,7 +119,7 @@ const Article = ({ currentArticle }) => {
             </button>
             <button
               className={`comment-vote-button downvote ${
-                votedAmount < 0 && "casted"
+                votedAmount < 0 ? "casted" : ""
               }`}
               title={
                 votedAmount > 0
