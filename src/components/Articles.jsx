@@ -38,7 +38,9 @@ const Articles = () => {
       )}
       {!currentArticles && <>No articles</>}
       {isLoading && <Loading name="articles" />}
-      {!isLoading && currentArticles.length === 0 && <p>No articles found.</p>}
+      {!isLoading && currentArticles.length === 0 && (
+        <p className="mt-4">No articles found.</p>
+      )}
       {!isLoading && currentArticles.length > 0 && <ArticleSortOptions />}
       {!isLoading && currentArticles.length > 0 && (
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
