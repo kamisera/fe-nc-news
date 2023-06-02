@@ -3,8 +3,16 @@ import Loading from "./ui/Loading";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/User";
 
-const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
+const ArticleComments = ({
+  currentArticleComments,
+  isLoadingComments,
+  handleCommentDelete,
+}) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
   return (
     <div className="container article-comments">
       {!currentArticleComments.length && (
@@ -29,6 +37,19 @@ const ArticleComments = ({ currentArticleComments, isLoadingComments }) => {
                       </Link>{" "}
                       {dayjs(Date.parse(comment.created_at)).fromNow()}
                     </p>
+                    {currentUser.username === comment.author && (
+                      <p className="comment-attribution">
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() =>
+                            handleCommentDelete(comment.comment_id)
+                          }
+                          title="Click here to delete your comment"
+                        >
+                          🗑️ Delete
+                        </button>
+                      </p>
+                    )}
                   </div>
                   <div className="article-vote-buttons col">
                     <button
