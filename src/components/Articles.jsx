@@ -6,6 +6,7 @@ import { capitaliseWord } from "../utils/utils";
 import { toast } from "react-toastify";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import ArticleSortOptions from "./ArticleSortOptions";
 dayjs.extend(relativeTime);
 
 const Articles = () => {
@@ -23,7 +24,8 @@ const Articles = () => {
       .catch((err) => {
         toast.error("Could not load articles! Please try again later.");
       });
-  }, [currentTopic]);
+  }, [searchParams]);
+
   return (
     <section className="container">
       <h2 className="mb-4 pb-4">
@@ -31,9 +33,13 @@ const Articles = () => {
         {currentTopic &&
           `Showing articles for "${capitaliseWord(currentTopic)}"`}
       </h2>
+      {!isLoading && currentTopic && (
+        <Link to="/articles">Show all topics</Link>
+      )}
       {!currentArticles && <>No articles</>}
       {isLoading && <Loading name="articles" />}
       {!isLoading && currentArticles.length === 0 && <p>No articles found.</p>}
+      {!isLoading && currentArticles.length > 0 && <ArticleSortOptions />}
       {!isLoading && currentArticles.length > 0 && (
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           {currentArticles.map((article) => {
@@ -84,8 +90,13 @@ const Articles = () => {
                       <p className="card-text">{article.title}</p>
                     </Link>
                     <p>
-                      By {article.author} on
-                      <br /> {dayjs(Date.parse(article.created_at)).fromNow()}
+                      By {article.author} <br />
+                      {dayjs(Date.parse(article.created_at)).fromNow()}
+                      {" | "}
+                      <Link to={`/articles/${article.article_id}#comments`}>
+                        {article.comment_count}
+                        {article.comment_count === 1 ? " comment" : " comments"}
+                      </Link>
                     </p>
                   </div>
                 </div>
