@@ -7,6 +7,7 @@ import Article from "./Article";
 import ArticleComments from "./ArticleComments";
 import PostComment from "./PostComment";
 import { UserContext } from "../contexts/User";
+import PageNotFound from "./PageNotFound";
 
 const ArticleContainer = () => {
   const { article_id: articleId } = useParams();
@@ -15,6 +16,7 @@ const ArticleContainer = () => {
   const [currentArticleComments, setCurrentArticleComments] = useState([]);
   const [isLoadingComments, setIsLoadingComments] = useState(true);
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [articleNotFound, setArticleNotFound] = useState(false);
 
   useEffect(() => {
     fetchArticle(articleId)
@@ -23,25 +25,35 @@ const ArticleContainer = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        toast.error("Could not load article! Please try again later.");
+        setIsLoading(false);
+        if (err.status === 404) {
+          setArticleNotFound(true);
+        } else {
+          toast.error("Could not load article! Please try again later.");
+        }
       });
   }, []);
 
   useEffect(() => {
-    fetchArticleComments(articleId)
-      .then((comments) => {
-        setCurrentArticleComments(comments);
-        setIsLoadingComments(false);
-      })
-      .catch((err) => {
-        toast.error("Could not load article comments! Please try again later.");
-      });
-  }, []);
+    if (Object.keys(currentArticle).length) {
+      fetchArticleComments(articleId)
+        .then((comments) => {
+          setCurrentArticleComments(comments);
+          setIsLoadingComments(false);
+        })
+        .catch((err) => {
+          toast.error(
+            "Could not load article comments! Please try again later."
+          );
+        });
+    }
+  }, [currentArticle]);
 
   return (
     <>
       {isLoading && <Loading name={`Article...`} />}
-      {!isLoading && (
+      {articleNotFound && <PageNotFound category="article" />}
+      {!isLoading && Object.keys(currentArticle).length > 0 && (
         <>
           <Article
             currentArticle={currentArticle}
