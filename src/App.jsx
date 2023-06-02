@@ -11,6 +11,7 @@ import Topics from "./components/Topics";
 import { toast } from "react-toastify";
 import Authors from "./components/Authors";
 import Footer from "./components/Footer";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/articles/:article_id" element={<ArticleContainer />} />
           <Route path="/topics/" element={<Topics />} />
           <Route path="/authors" element={<Authors />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
       <Footer />
