@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import ArticleSortOptions from "./ArticleSortOptions";
+import RequestError from "./RequestError";
 dayjs.extend(relativeTime);
 
 const Articles = () => {
@@ -14,6 +15,7 @@ const Articles = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentTopic = searchParams.get("topic");
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     fetchArticles(searchParams)
@@ -22,9 +24,19 @@ const Articles = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        toast.error("Could not load articles! Please try again later.");
+        setIsLoading(false);
+        if (err.status === 400) {
+          setErrorMsg(err.data.msg);
+        } else {
+          toast.error("Could not load articles! Please try again later.");
+        }
       });
   }, [searchParams]);
+
+  const handleErrorMsgReset = () => {
+    setErrorMsg(null);
+    setIsLoading(true);
+  };
 
   return (
     <section className="container">
@@ -37,9 +49,21 @@ const Articles = () => {
         <Link to="/articles">Show all topics</Link>
       )}
       {!currentArticles && <>No articles</>}
+      {errorMsg && (
+        <>
+          <RequestError errorMsg={errorMsg} />
+          <p>
+            Click{" "}
+            <Link to="/articles/" onClick={handleErrorMsgReset}>
+              here
+            </Link>{" "}
+            to show all articles.
+          </p>
+        </>
+      )}
       {isLoading && <Loading name="articles" />}
-      {!isLoading && currentArticles.length === 0 && (
-        <p className="mt-4">No articles found.</p>
+      {!isLoading && !errorMsg && currentArticles.length === 0 && (
+        <p>No articles found.</p>
       )}
       {!isLoading && currentArticles.length > 0 && <ArticleSortOptions />}
       {!isLoading && currentArticles.length > 0 && (
