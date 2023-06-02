@@ -11,19 +11,14 @@ const Article = ({ currentArticle }) => {
   const handleVoteChange = (clickedAmount) => {
     setVotedAmount((prevVotedAmount) => {
       if (prevVotedAmount === 0) {
-        console.log("new vote - using clicked amount");
         setCurrentVotes((previousVotes) => previousVotes + clickedAmount);
       }
 
       if (prevVotedAmount === clickedAmount) {
-        console.log("clicked is same as already voted - resetting vote");
         setResetVote(true);
       }
 
       if (prevVotedAmount !== clickedAmount && prevVotedAmount !== 0) {
-        console.log(
-          "clicked is opposite of previous vote, doubling the amount"
-        );
         setCurrentVotes((previousVotes) => previousVotes + clickedAmount * 2);
         return clickedAmount * 2;
       }
@@ -34,7 +29,6 @@ const Article = ({ currentArticle }) => {
 
   useEffect(() => {
     if (votedAmount !== 0) {
-      console.log("updating vote in api to: ", votedAmount);
       voteOnArticle(currentArticle.article_id, votedAmount).catch((err) => {
         toast.error(`Could not vote on article. Please try again later.`);
         setVotedAmount(0);
