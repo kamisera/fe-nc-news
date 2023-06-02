@@ -97,3 +97,14 @@ export const fetchTopics = () => {
       return Promise.reject(err.response);
     });
 };
+
+export const deleteComment = (commentId) => {
+  return api
+    .delete(`comments/${commentId}`)
+    .then(({ data }) => {
+      return data.topics;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
+    });
+};
