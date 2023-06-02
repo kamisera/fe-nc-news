@@ -18,27 +18,47 @@ export const fetchArticles = (searchParams) => {
   if (queries.length) {
     url += "?" + queries.join("&");
   }
-  return api.get(url).then(({ data }) => {
-    return data.articles;
-  });
+  return api
+    .get(url)
+    .then(({ data }) => {
+      return data.articles;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
+    });
 };
 
 export const fetchArticle = (articleId) => {
-  return api.get(`articles/${articleId}`).then(({ data }) => {
-    return data.article;
-  });
+  return api
+    .get(`articles/${articleId}`)
+    .then(({ data }) => {
+      return data.article;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
+    });
 };
 
 export const fetchArticleComments = (articleId) => {
-  return api.get(`articles/${articleId}/comments`).then(({ data }) => {
-    return data.comments;
-  });
+  return api
+    .get(`articles/${articleId}/comments`)
+    .then(({ data }) => {
+      return data.comments;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
+    });
 };
 
 export const fetchUsers = () => {
-  return api.get(`users`).then(({ data }) => {
-    return data.users;
-  });
+  return api
+    .get(`users`)
+    .then(({ data }) => {
+      return data.users;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
+    });
 };
 
 export const postComment = (username, articleId, body) => {
@@ -49,18 +69,31 @@ export const postComment = (username, articleId, body) => {
     })
     .then(({ data }) => {
       return data.comment;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
     });
 };
 
 export const voteOnArticle = (articleId, amount) => {
   const data = { inc_votes: amount };
-  return api.patch(`articles/${articleId}`, data).then(({ data }) => {
-    return data.article;
-  });
+  return api
+    .patch(`articles/${articleId}`, data)
+    .then(({ data }) => {
+      return data.article;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
+    });
 };
 
 export const fetchTopics = () => {
-  return api.get(`topics`).then(({ data }) => {
-    return data.topics;
-  });
+  return api
+    .get(`topics`)
+    .then(({ data }) => {
+      return data.topics;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response);
+    });
 };
